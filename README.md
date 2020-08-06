@@ -6,3 +6,5 @@ This is authentication only, will not include role-based authorization (authz, a
 Not tied to CILogon or Auth0, but can be upgraded to use those technologies.
 
 Please use OpenAuth 2.0 (OAuth2) API as this module's API spec as much as possible.
+
+Leave room for up-grading to federated authentication later, e.g., OpenID Connect
