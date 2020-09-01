@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  description:
+    This is a generic user authentication service that can support different authentication providers.
+  version: "1.0.0"
+  title: Generic user authentication service
+tags:
+  - name: user authentication
+    description: user authentication service
+
+paths:
+  /authorize:
+    get:
+      security:
+        - ApiKeyAuth: []
+      summary: authorize a user through the input provider and redirect to input return_url with user authentication success or failure status
+      parameters:
+        - in: query
+          name: provider
+          schema:
+            type: string
+            enum: [venderbilt]
+          required: true
+          description: a unique string to identify user authentication provider
+        - in: query
+          name: return_url
+          schema:
+            type: string
+          required: true
+          example: https://ctmd.renci.org
+          description: a URL that the user authentication service will redirect to with a success or failure status parameter after interacting with the provider to authenticate a user
+      operationId: api.authorize
+      responses:
+        '200':
+          description: redirect to return_url with success or failure status
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: "Bad Request"
+          content:
+            application/json:
+              schema: {}
+        '500':
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema: {}
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY

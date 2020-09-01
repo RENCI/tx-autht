@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  tx-autht-test:
+    build:
+      context: test
+    command: []
+    depends_on:
+      - tx-autht

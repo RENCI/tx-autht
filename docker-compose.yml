@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  tx-autht:
+    build:
+      context: .
+    restart: always
+    environment:
+    ports:
+      - $API_PORT:8080
