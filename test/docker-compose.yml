@@ -4,5 +4,5 @@ services:
     build:
       context: test
     command: ["-s", "-vv", "-x"]
-  depends_on:
-    - tx-autht
+    depends_on:
+      - tx-autht
