@@ -3,6 +3,6 @@ services:
   tx-autht-test:
     build:
       context: test
-    command: []
-    depends_on:
-      - tx-autht
+    command: ["-s", "-vv", "-x"]
+  depends_on:
+    - tx-autht

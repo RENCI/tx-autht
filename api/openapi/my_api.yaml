@@ -29,6 +29,12 @@ paths:
           required: true
           example: https://ctmd.renci.org
           description: a URL that the user authentication service will redirect to with a success or failure status parameter after interacting with the provider to authenticate a user
+        - in: query
+          name: code
+          schema:
+            type: string
+          required: false
+          description: an optional token code to check with the provider authentication server
       operationId: api.authorize
       responses:
         '200':
