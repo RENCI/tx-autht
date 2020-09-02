@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 RUN apk --no-cache add gcc musl-dev libffi-dev openssl-dev
-RUN pip3 install --no-cache-dir flask gevent==1.4.0 gunicorn==19.9.0 connexion[swagger-ui] requests tx-functional python-dateutil
+RUN pip3 install --no-cache-dir flask flask-cors gevent==1.4.0 gunicorn==19.9.0 connexion[swagger-ui] requests tx-functional python-dateutil
 
 COPY api /usr/src/app/api
 COPY tx-utils/src /usr/src/app

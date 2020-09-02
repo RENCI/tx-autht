@@ -8,18 +8,20 @@ tags:
   - name: user authentication
     description: user authentication service
 servers:
-  - url: 'http://localhost:8080/v1'
+  - url: '{protocol}://auth-fuse.renci.org:8080/v1'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
 paths:
   /authorize:
     get:
+      security:
+        - ApiKeyAuth: []
       summary: authorize a user through the input provider and redirect to input return_url with user authentication success or failure status
       parameters:
-        - in: query
-          name: apikey
-          schema:
-            type: string
-          required: true
-          description: the apikey is a token that a client provides when making API calls.
         - in: query
           name: provider
           schema:
@@ -62,3 +64,10 @@ paths:
           content:
             application/json:
               schema: {}
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
