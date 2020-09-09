@@ -5,4 +5,4 @@ services:
       context: test
     command: ["-s", "-vv", "-x"]
     depends_on:
-      - tx-autht
+      - txautht
