@@ -1,8 +1,8 @@
 version: '3.4'
 services:
-  tx-autht:
-    build:
-      context: .
+  txautht:
+    container_name: txautht
+    image: renci/txautht:1.0
     restart: always
     env_file:
       - env.docker
