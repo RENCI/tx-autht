@@ -29,8 +29,8 @@ def authorize(apikey, provider, return_url, code):
         for key, val in r.json().items():
             key_val_str = f"{key_val_str}&{key}={val}"
         redirect_url = f"{return_url}?status=success{key_val_str}"
-        return redirect_url, 200
-        #return redirect(redirect_url)
+        #return redirect_url, 200
+        return redirect(redirect_url)
     else:
         print(r.status_code, r.content, flush=True)
         status_code = r.status_code
