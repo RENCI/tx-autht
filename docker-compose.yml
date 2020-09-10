@@ -5,6 +5,6 @@ services:
     image: renci/txautht:1.0
     restart: always
     env_file:
-      - env.docker
+      - ./env.docker
     ports:
       - $API_PORT:8080

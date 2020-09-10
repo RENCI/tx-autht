@@ -5,7 +5,10 @@ services:
       context: nginx
     volumes:
       - $SSL_CERT_DIR:/a
+    env_file:
+      - ./env.docker
     ports:
-      - $API_PORT:8080
+      - 443:443
+      - 80:80
     depends_on:
       - txautht

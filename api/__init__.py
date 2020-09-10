@@ -35,5 +35,6 @@ def authorize(apikey, provider, return_url, code):
         print(r.status_code, r.content, flush=True)
         status_code = r.status_code
         redirect_url = f"{return_url}?status=failure&status_code={status_code}"
-        return redirect_url, status_code
-        #return redirect(redirect_url)
+        # return redirect_url, status_code
+        return redirect(redirect_url)
+
