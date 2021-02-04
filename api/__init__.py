@@ -1,7 +1,7 @@
 import os
 import json
 import requests
-from flask import redirect
+from flask import redirect as flask_redirect
 
 
 def authorize(apikey, provider, return_url, code, redirect):
@@ -31,7 +31,7 @@ def authorize(apikey, provider, return_url, code, redirect):
                 key_val_str = f"{key_val_str}&{key}={val}"
             redirect_url = f"{return_url}?status=success{key_val_str}"
             #return redirect_url, 200
-            return redirect(redirect_url)
+            return flask_redirect(redirect_url)
         else:
             return r_json
     else:
@@ -39,5 +39,5 @@ def authorize(apikey, provider, return_url, code, redirect):
         status_code = r.status_code
         redirect_url = f"{return_url}?status=failure&status_code={status_code}"
         # return redirect_url, status_code
-        return redirect(redirect_url)
+        return flask_redirect(redirect_url)
 
