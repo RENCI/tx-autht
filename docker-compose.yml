@@ -2,7 +2,7 @@ version: '3.4'
 services:
   txautht:
     container_name: txautht
-    image: renci/txautht:1.0
+    image: renci/txautht:1.1
     restart: always
     env_file:
       - ./env.docker

@@ -19,3 +19,15 @@ def test_authorize():
     # test a valid code for venderbilt provider succeeds in user authentication
     resp = requests.get("http://txautht:8080/authorize?apikey=TEST123&provider=venderbilt&code=testAuth1234&return_url=http://tx-autht:8080")
     assert resp.status_code == 200
+    # test a valid code for venderbilt provider succeeds in user authentication while redirect set to false
+    resp = requests.get(
+        "http://txautht:8080/authorize?apikey=TEST123&provider=venderbilt&code=testAuth1234&return_url=http://tx-autht:8080&redirect=false")
+    assert resp.status_code == 200
+    assert resp.json() == {
+        "access_level": "6",
+        "email": "kyle.mcguffin@vumc.org",
+        "first_name": "Test",
+        "last_name": "User",
+        "organization": "Test Org",
+        "username": "test-user"
+    }

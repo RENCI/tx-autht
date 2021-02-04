@@ -12,7 +12,7 @@ servers:
 paths:
   /authorize:
     get:
-      summary: authorize a user through the input provider and redirect to input return_url with user authentication success or failure status
+      summary: authorize a user through the input provider. If redirect query parameter is set to True, the service redirects to input return_url with user authentication success or failure status; otherwise, the service returns status and user info in a JSON response. The default for redirect parameter is True.
       parameters:
         - in: query
           name: apikey
@@ -40,10 +40,17 @@ paths:
             type: string
           required: false
           description: an optional token code to check with the provider authentication server
+        - in: query
+          name: redirect
+          schema:
+            type: boolean
+            default: true
+          required: false
+          description: an optional parameter indicating whether to redirect to return_url or return JSON response when successfully authenticated
       operationId: api.authorize
       responses:
         '200':
-          description: redirect to return_url with success or failure status
+          description: redirect to return_url with success or failure status if redirect parameter is True; otherwise, return JSON response.
           content:
             application/json:
               schema: {}
