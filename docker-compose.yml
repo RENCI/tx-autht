@@ -8,3 +8,12 @@ services:
       - ./env.docker
     ports:
       - $API_PORT:8080
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPAM_CONFIG_SUBNET}
+
