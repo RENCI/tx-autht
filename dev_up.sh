@@ -1,5 +1,5 @@
 #!/bin/bash
-et -e
+set -e
 
 set -o allexport
 source env.docker
