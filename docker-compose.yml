@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 services:
   txautht:
     container_name: txautht
@@ -16,4 +16,3 @@ networks:
       driver: default
       config:
         - subnet: ${IPAM_CONFIG_SUBNET}
-
