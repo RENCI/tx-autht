@@ -1,10 +1,10 @@
 import os
 import json
 import requests
-from flask import redirect
+from flask import redirect as flask_redirect
 
 
-def authorize(apikey, provider, return_url, code):
+def authorize(apikey, provider, return_url, code, redirect):
     server_api_key = os.getenv("API_KEY", "")
     print("server api key:", server_api_key, ", request api key:", apikey, flush=True)
     if apikey != server_api_key:
@@ -25,16 +25,19 @@ def authorize(apikey, provider, return_url, code):
     if r.status_code == 200:
         r_json = r.json()
         print(r_json, flush=True)
-        key_val_str = ''
-        for key, val in r.json().items():
-            key_val_str = f"{key_val_str}&{key}={val}"
-        redirect_url = f"{return_url}?status=success{key_val_str}"
-        #return redirect_url, 200
-        return redirect(redirect_url)
+        if redirect:
+            key_val_str = ''
+            for key, val in r.json().items():
+                key_val_str = f"{key_val_str}&{key}={val}"
+            redirect_url = f"{return_url}?status=success{key_val_str}"
+            #return redirect_url, 200
+            return flask_redirect(redirect_url)
+        else:
+            return r_json
     else:
         print(r.status_code, r.content, flush=True)
         status_code = r.status_code
         redirect_url = f"{return_url}?status=failure&status_code={status_code}"
         # return redirect_url, status_code
-        return redirect(redirect_url)
+        return flask_redirect(redirect_url)
 

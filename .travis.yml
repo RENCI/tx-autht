@@ -4,6 +4,7 @@ services:
 branches:
   only:
     - master
+    - stage
 
 script:
   - test/test.sh
