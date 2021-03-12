@@ -6,7 +6,7 @@ from flask import redirect as flask_redirect
 
 def authorize(apikey, provider, return_url, code, redirect):
     server_api_key = os.getenv("API_KEY", "")
-    print("server api key:", server_api_key, ", request api key:", apikey, flush=True)
+    # print("server api key:", server_api_key, ", request api key:", apikey, flush=True)
     if apikey != server_api_key:
         return "Unauthorized", 401
     providers = os.getenv("PROVIDERS", "")
@@ -24,7 +24,7 @@ def authorize(apikey, provider, return_url, code, redirect):
         return_url = return_url[:-1]
     if r.status_code == 200:
         r_json = r.json()
-        print(r_json, flush=True)
+        # print(r_json, flush=True)
         if redirect:
             key_val_str = ''
             for key, val in r.json().items():
@@ -35,9 +35,14 @@ def authorize(apikey, provider, return_url, code, redirect):
         else:
             return r_json
     else:
-        print(r.status_code, r.content, flush=True)
-        status_code = r.status_code
-        redirect_url = f"{return_url}?status=failure&status_code={status_code}"
-        # return redirect_url, status_code
-        return flask_redirect(redirect_url)
-
+        r_json = {'content': str(r.content),
+                  'status_code': r.status_code}
+        # print(r_json, flush=True)
+        if redirect:
+            # print(r.status_code, r.content, flush=True)
+            status_code = r.status_code
+            redirect_url = f"{return_url}?status=failure&status_code={status_code}"
+            # return redirect_url, status_code
+            return flask_redirect(redirect_url)
+        else:
+            return r_json, r.status_code
