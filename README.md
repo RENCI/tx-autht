@@ -1,3 +1,5 @@
+[![Actions Status: tests](https://github.com/RENCI/tx-autht/workflows/tests/badge.svg)](https://github.com/RENCI/tx-autht/actions?query=workflow%3A"tests")
+
 # tx-autht
 Generic containerized authentication module to use a ticket server or direct authentication
 
