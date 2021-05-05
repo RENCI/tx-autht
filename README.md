@@ -1,4 +1,4 @@
-[![Actions Status: tests](https://github.com/RENCI/tx-autht/workflows/tests/badge.svg)](https://github.com/RENCI/tx-autht/actions?query=workflow%3A"tests")
+[![AppVeyor](https://img.shields.io/docker/cloud/build/txscience/tx-autht?style=plastic)](https://hub.docker.com/repository/docker/txscience/tx-autht/builds)
 
 # tx-autht
 Generic containerized authentication module to use a ticket server or direct authentication
