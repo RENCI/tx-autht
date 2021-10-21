@@ -3,6 +3,7 @@ services:
   txautht-nginx:
     build:
       context: nginx
+    restart: always  
     volumes:
       - $SSL_CERT_DIR:/a
     env_file:
