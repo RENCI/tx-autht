@@ -1,4 +1,4 @@
 [submodule "tx-utils"]
 	path = tx-utils
-	url = https://github.com/RENCI/tx-utils.git
+	url = git@github.com:/RENCI/tx-utils.git
 	branch = master
